@@ -43,7 +43,7 @@ app.post("/register", async (req, res) => {
     });
     if (existingUser) {
       // If user already exists, send a message to the client
-      res.json({ success: false, message: "Username already exists." });
+      res.json({ success: false, message: "Username/Email already exists." });
     } else {
       // If user does not exist, create a new user
       const user = await User.create({ username, password, email });

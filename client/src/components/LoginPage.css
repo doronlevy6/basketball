@@ -51,3 +51,29 @@
 .submit-button:hover {
   background-color: #45a049; /* Darker green on button hover */
 }
+.login-page h2,
+.login-page p {
+  color: #4caf50; /* Adjust as needed */
+  text-align: center; /* Center align text */
+}
+
+/* For the button that switches between register and login */
+.login-page button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50; /* Green button background */
+  color: #ffffff; /* White button text color */
+  cursor: pointer;
+}
+
+.login-page button:hover {
+  background-color: #45a049; /* Darker green on button hover */
+}
+
+/* For the error message */
+.login-page p {
+  color: red; /* Red error text */
+  margin-bottom: 20px;
+}

@@ -9,6 +9,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ function LoginPage() {
         console.log(`\n xxx`, response.data, `\n`);
         setIsRegister(true); // Switch to Login after successful registration
       } else {
+        setErrorMessage(response.data.message);
         console.log(response.data.message);
       }
     } catch (error) {
@@ -112,6 +114,7 @@ function LoginPage() {
           </form>
         </React.Fragment>
       )}
+      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 }
