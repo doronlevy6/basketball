@@ -31,17 +31,47 @@ sequelize
   .then(() => console.log("Database connected..."))
   .catch((err) => console.log("Error: " + err));
 
-app.post("/login", async (req, res) => {
+app.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
 
   try {
-    // Create a new user and save it in the database
-    const user = await User.create({ username, password, email });
-    console.log("Created user:", user.toJSON());
+    // Check if the user already exists in the database
+    const existingUser = await User.findOne({
+      where: {
+        [Sequelize.Op.or]: [{ username }, { email }],
+      },
+    });
+    if (existingUser) {
+      // If user already exists, send a message to the client
+      res.json({ success: false, message: "Username already exists." });
+    } else {
+      // If user does not exist, create a new user
+      const user = await User.create({ username, password, email });
+      console.log("Registered user:", user.toJSON());
 
-    res.json({ success: true });
+      res.json({ success: true });
+    }
   } catch (error) {
-    console.error("Error creating user:", error);
+    console.error("Error registering user:", error);
+    res.json({ success: false });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Find the user in the database
+    const user = await User.findOne({ where: { username, password } });
+
+    if (user) {
+      console.log("Logged in user:", user.toJSON());
+      res.json({ success: true });
+    } else {
+      res.json({ success: false, message: "Invalid credentials" });
+    }
+  } catch (error) {
+    console.error("Error logging in:", error);
     res.json({ success: false });
   }
 });
