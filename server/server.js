@@ -28,7 +28,7 @@ User.sync().then(() => console.log("User table created"));
 // Test the connection
 sequelize
   .authenticate()
-  .then(() => console.log("Database connected..."))
+  .then(() => console.log("Databas e connected..."))
   .catch((err) => console.log("Error: " + err));
 
 app.post("/register", async (req, res) => {
