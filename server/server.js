@@ -23,7 +23,7 @@ const User = sequelize.define("User", {
 });
 
 // Create the users table if it doesn't exist yet
-User.sync().then(() => console.log("User table created"));
+User.sync().then(() => console.log("User table created1"));
 
 // Test the connection
 sequelize

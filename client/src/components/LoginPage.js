@@ -47,7 +47,7 @@ function LoginPage() {
         console.log(`\n xxx`, response.data, `\n`);
         navigate("/welcome");
       } else {
-        console.log("response.data.message", response.data.message);
+        console.log("response.data.message1", response.data.message);
       }
     } catch (error) {
       console.log(error.message);
